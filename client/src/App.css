@@ -1,0 +1,139 @@
+:root {
+  --msg-bg: rgb(30, 46, 63);
+  --user-msg-bg: rgb(43, 82, 120, 1);
+  --main-bg: rgb(14 22 33);
+}
+
+.mainWrapper {
+  height: 100%;
+  /* border: 5px solid yellow; */
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-items: start;
+}
+
+.content {
+  background-color: rgb(14 22 33);
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+  flex: 1;
+}
+
+.messageWrapper {
+  width: 100%;
+  /* border: 1px solid blue; */
+  display: block;
+  z-index: 2;
+}
+
+.message {
+  background-color: rgb(30, 46, 63);
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  color: whitesmoke;
+  margin: 10px 0 10px 0;
+  white-space: nowrap;
+  max-width: 80%;
+  min-width: 200px;
+  min-height: 50px;
+  position: relative;
+}
+
+.message.right-side {
+  background-color: var(--user-msg-bg);
+}
+
+.left-side {
+  float: left;
+  clear: left;
+  margin-left: 10px;
+}
+
+.right-side {
+  float: right;
+  clear: right;
+  margin-right: 10px;
+}
+
+.left-side.message::after {
+  content: '';
+  border-style: solid;
+  border-width: 0 58px 40px 68px;
+  border-color: transparent transparent var(--msg-bg) transparent;
+  transform: rotate(0deg);
+  position: absolute;
+  bottom: 0px;
+  left: -10px;
+  z-index: -1;
+  display: block;
+}
+
+.right-side.message::after {
+  content: '';
+  border-style: solid;
+  border-width: 0 58px 40px 68px;
+  border-color: transparent transparent var(--user-msg-bg) transparent;
+  transform: rotate(0deg);
+  position: absolute;
+  bottom: 0px;
+  right: -10px;
+  z-index: -1;
+  display: block;
+}
+
+.message p {
+  font-size: 16px;
+  font-weight: 700;
+  color: greenyellow;
+}
+
+.message span {
+  font-size: 16px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.senderWrapper {
+  background-color: var(--msg-bg);
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  position: relative;
+}
+
+.senderWrapper textarea {
+  flex: 1;
+  padding: 10px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  height: 40px;
+  max-height: 100px;
+  overflow: hidden;
+  resize: none;
+  background-color: var(--msg-bg);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.senderWrapper img {
+  cursor: pointer;
+}
+
+.emoji-list {
+  width: 30%;
+  height: 50%;
+  position: absolute;
+  bottom: 100px;
+  right: 0px;
+}
+
+.emoji-text {
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+}
