@@ -126,14 +126,39 @@
   cursor: pointer;
 }
 
-.emoji-list {
-  width: 30%;
-  height: 50%;
+.emoji-bar {
   position: absolute;
-  bottom: 100px;
+  bottom: 50px;
   right: 0px;
 }
 
-.emoji-text {
-  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+/** MODAL STYLES **/
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.modal-visible {
+  display: flex;
+}
+.modal-hidden {
+  display: none;
+}
+/** MODAL STYLES **/

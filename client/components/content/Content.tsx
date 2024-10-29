@@ -1,24 +1,12 @@
-interface Message {
-    message_id: number | string;
-    text: string;
-    from: MessageFrom;
-    messageId: number;
-}
+import React, { useContext } from 'react';
+import { Message } from '../../types/MessageType';
+import { MessageContent } from '../../types/MessageContentType';
+import { MessageContext } from '../../context/MessageProvider';
+import { MessageContextType } from '../../types/MessageContextType';
 
-interface MessageFrom {
-    first_name: string;
-    last_name: string;
-    id: number;
-    is_bot: boolean;
-}
+const Content: React.FC<{ messages?: Message[] }> = () => {
+    const { messages } = useContext<MessageContextType>(MessageContext);
 
-interface MessageContent {
-    username: string;
-    text: string;
-    type: 'left' | 'right';
-}
-
-const Content: React.FC<{ messages: Message[] }> = ({ messages }) => {
     const Message: React.FC<MessageContent> = ({ username, text, type }) => {
         return (
             <div className='messageWrapper'>
@@ -31,18 +19,17 @@ const Content: React.FC<{ messages: Message[] }> = ({ messages }) => {
     }
 
     const getMessages = (): JSX.Element[] => {
-        return messages.map((msg) => {
+        return messages.map((msg: Message) => {
             const {
                 message_id,
                 text,
-                from: { first_name, last_name = '', id, is_bot },
+                from: { first_name, last_name = '', is_bot },
             } = msg;
 
             return <Message
                 key={message_id}
                 text={text}
                 username={`${first_name} ${last_name}`}
-                id={id}
                 type={is_bot ? 'left' : 'right'}
             />
         });

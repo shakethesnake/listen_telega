@@ -3,21 +3,29 @@ const WebSocket = require('ws');
 const TOKEN = '7727941794:AAFvgpE-Oums8hSeI-yIdhLcOVbowTWK7Rs';
 const bot = new TelegramBot(TOKEN, { polling: {
     params: {
-        timeout: 50,
+        timeout: 100,
+        interval: 200,
     }
 } });
 const ws = new WebSocket.Server({ port: 8080 });
 
 ws.on('connection', (connection) => {
-
+    console.log('new connection');
     // get message from app
-    connection.on('message', async (message) => {
-        bot.sendMessage(connection.chatId, message);
-    });
+    connection.on('message', async (data) => {
+        console.log(connection.chatId, data.toString());
+        const resp = await bot.sendMessage(connection.chatId, data.toString());
 
+        setTimeout(() => {
+            connection.send(JSON.stringify(resp));
+        }, 100);
+    });
+    
     // get message from telegram
     bot.on('message', async (msg) => {
+        console.log(msg.text)
         if (msg.text === '/wakeup') {
+            console.log(msg.chat.id);
             connection.chatId = msg.chat.id;
             connection.send(JSON.stringify(msg));
 
@@ -29,7 +37,7 @@ ws.on('connection', (connection) => {
             connection.send(JSON.stringify(msg));
         }
     });
-
+    
     connection.on('close', () => {
         bot.removeAllListeners('message');
         bot.close();
