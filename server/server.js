@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const WebSocket = require('ws');
-const TOKEN = '7727941794:AAFvgpE-Oums8hSeI-yIdhLcOVbowTWK7Rs';
+const TOKEN = `XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`;
 const bot = new TelegramBot(TOKEN, { polling: {
     params: {
         timeout: 100,
